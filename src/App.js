@@ -1,32 +1,26 @@
-import { MapContainer,TileLayer,Marker,Popup } from 'react-leaflet';
-import L from "leaflet"
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import './App.css'; // Import the CSS file
+import MapPage from './Map'; // Ensure this path matches your file structure
 
 function App() {
-  const position = [48.8575, 2.3514]
   return (
-    <div className="App">
-     <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
-    <TileLayer
-      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    />
-    <Marker position={position}>
-      <Popup>
-        A pretty CSS3 popup. <br /> Easily customizable.
-      </Popup>
-    </Marker>
-  </MapContainer>
-    </div>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="container">
+              <h1>Home Page</h1>
+              <p>Welcome to the Home Page! Click below to go to the Map Page.</p>
+              <Link to="/map" className="link">Go to Map Page</Link>
+            </div>
+          }
+        />
+        <Route path="/map" element={<MapPage />} />
+      </Routes>
+    </Router>
   );
 }
-
-let DefaultIcon = L.icon({
-  iconUrl: "/marker-icon.png",
-  iconSize: [25, 41],
-  iconAnchor: [10, 41],
-  popupAnchor: [2, -40],
-});
-L.Marker.prototype.options.icon = DefaultIcon;
 
 export default App;
