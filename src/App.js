@@ -2,12 +2,11 @@ import React from 'react';
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './assets/styles/App.css';
-import MapPage from './pages /Map/Map'; // Correct path (remove spaces)
+import MapPage from './pages/MapView/Map'; 
 import { useTheme } from './contexts/ThemeContext'; 
-import ThemeToggle from './components /ThemeToggle'; // Correct path (remove spaces)
-
+import ThemeToggle from './components/ThemeToggle'; 
 function App() {
-  const { theme } = useTheme(); // Use the theme from ThemeContext
+  const { theme } = useTheme(); 
   useEffect(() => {
     document.body.className = theme === 'dark' ? 'body-dark' : '';
   }, [theme]); 
