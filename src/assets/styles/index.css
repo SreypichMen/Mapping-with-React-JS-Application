@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* Default light theme variables */
+:root {
+  --container-bg-color: #fff; /* White background for light theme */
+  --text-color: #333;         /* Dark text for light theme */
+  --background-color: #fff;   /* Light background for light theme */
+}
+
+/* Dark theme variables when .body-dark is applied to body */
+.body-dark {
+  --container-bg-color: #333; /* Dark background for dark theme */
+  --text-color: #fff;         /* White text for dark theme */
+  --background-color: #333;   /* Dark background for dark theme */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
