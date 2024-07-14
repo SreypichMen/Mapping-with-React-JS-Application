@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTheme } from '../contexts/ThemeContext';
-import { ReactComponent as Sun } from '../assets/icons/Sun.svg';  // Import as React component
-import { ReactComponent as Moon } from '../assets/icons/Moon.svg';  // Import as React component
+import { ReactComponent as Sun } from '../assets/icons/themes/Sun.svg';  // Import as React component
+import { ReactComponent as Moon } from '../assets/icons/themes/Moon.svg';  // Import as React component
 import '../assets/styles/theme/toggle.css'
 const ThemeToggle = () => {
     const { theme, toggleTheme } = useTheme();

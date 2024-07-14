@@ -1,0 +1,70 @@
+.wrapper{
+  padding: 10px
+}
+.language-switcher .dropdown {
+
+  position: relative;
+  display: inline-block;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  color: var(--text-color);  
+}
+
+.language-switcher .dropbtn {
+  background-color: transparent;
+  color:  var(--text-color);
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+ 
+}
+
+.language-switcher .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.language-switcher .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a {
+  padding: 12px 16px;
+  display: block;
+  color: var(--text-color); /* Default text color */
+  text-decoration: none;
+}
+
+.dropdown-content a.active {
+  background-color: lightblue; /* Green background for active language */
+ 
+}
+
+.dropdown-content a:hover {
+  background-color:  lightgray; /* Light grey background on hover */
+}
+
+
+.language-switcher .dropdown-content a:hover {background-color:lightgray}
+
+.language-switcher .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.language-switcher .dropdown:hover .dropbtn {
+  background-color: lightblue;
+  border-radius: 10px;
+}
+ svg {
+  width: 20px;   /* Set the width of the SVG */
+  height: auto;  /* Maintain the aspect ratio of the SVG */
+  vertical-align: middle; /* Align SVG vertically with the text */
+  margin-right: 5px; /* Space between the flag and the text */
+}
