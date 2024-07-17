@@ -3,7 +3,8 @@ import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Polyline } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-
+import BackHome from '../../components/MapPage/useNavigate'
+import '../../assets/styles/navigation/back_to_home.css'
 // Define the custom icon
 const customIcon = new L.Icon({
   iconUrl: '/marker-icon.png',
@@ -46,8 +47,10 @@ function MapPage() {
   };
 
   return (
-    <div className="App">
-      <MapContainer center={currentLocation || [48.8566, 2.3522]} zoom={13} style={{ height: "100vh", width: "100%" }}>
+    <div >
+    
+      <div>
+      <MapContainer center={currentLocation || [48.8566, 2.3522]} zoom={13} style={{ height: "95vh", width: "100%" }}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {currentLocation && <Marker position={currentLocation} icon={customIcon} />}
         {routeData && (
@@ -57,6 +60,11 @@ function MapPage() {
           />
         )}
       </MapContainer>
+      </div>
+      <div>
+          <BackHome />
+      </div>
+
     </div>
   );
 }

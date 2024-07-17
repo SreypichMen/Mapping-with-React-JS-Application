@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import '../assets/styles/App.css';
-import MapPage from '../pages/MapView/Map';
+import MapPage from './MapView/Map';
 import { useTheme } from '../contexts/ThemeContext';
 import ThemeToggle from '../components/ThemeToggle';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
-
 function HomePage() {
   const { theme } = useTheme();
   const { t } = useTranslation();
