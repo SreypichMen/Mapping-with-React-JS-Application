@@ -77,15 +77,3 @@ p {
 .link:hover {
   background-color: var(--link-hover-bg-color);
 }
-
-.back_home_block{
-  background-color: transparent;
-  position: absolute;
-  left: 0;
-}
-
-.back_home_block{
-  background-color: transparent;
-  position: absolute;
-  left: 0;
-}
