@@ -4,12 +4,13 @@ import MapPage from '../MapViewPage/MapPage';
 import { useTheme } from '../../contexts/ThemeContext';
 import ThemeToggle from '../../components/ThemeToggle/ThemeToggle';
 import LanguageSwitcher from '../../components/LanguageSwitcher/LanguageSwitcher';
-import { useTranslation } from 'react-i18next';
+import { useLanguage } from '../../contexts/LanguageContext'; // Import useLanguage
 
 import './HomePage.css';
+
 function HomePage() {
   const { theme } = useTheme();
-  const { t } = useTranslation();
+  const { translations } = useLanguage(); // Use translations from LanguageContext
 
   useEffect(() => {
     document.body.className = theme === 'dark' ? 'body-dark' : '';
@@ -21,14 +22,13 @@ function HomePage() {
         <Route path="/" element={
           <div className="App">
             <div className="header">
-
               <LanguageSwitcher />
               <ThemeToggle />
             </div>
             <div className="container">
-              <h1>{t('welcome')}</h1>
-              <p>{t('description')}</p>
-              <Link to="/map" className="link">{t('go_to_map')}</Link>
+              <h1>{translations.welcome}</h1> {/* Use translations directly */}
+              <p>{translations.description}</p>
+              <Link to="/map" className="link">{translations.go_to_map}</Link>
             </div>
           </div>
         }/>

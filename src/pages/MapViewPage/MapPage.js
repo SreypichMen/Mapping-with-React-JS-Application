@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Marker, Polyline } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import BackHome from '../../components/MapPage/BackHomeNavigationButton/BackHomeNavigationButton'
-import '../../components/MapPage/BackHomeNavigationButton/BackHomeNavigationButton'
+
 // Define the custom icon
 const customIcon = new L.Icon({
   iconUrl: '/marker-icon.png',
@@ -34,10 +34,10 @@ function MapPage() {
 
   const fetchRouteData = async (lat, lon) => {
     try {
-      const apiKey = '5b3ce3597851110001cf624848a2881bc12e4276a2d3cd6ede03304b'; // Replace with your OpenRouteService API key
-      const startCoords = `${lon},${lat}`; // Use current location coordinates
-      const endCoords = '2.3522,48.8566'; // A fixed point in Paris for the demo
-      const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${apiKey}&start=${startCoords}&end=${endCoords}`;
+      const apiKey =process.env.REACT_APP_API_URL ; // Use environment variable
+      const startCoords = `${lon},${lat}`;
+      const endCoords = '2.3522,48.8566'; // Example endpoint in Paris
+      const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${process.env.REACT_APP_API_URL }&start=${startCoords}&end=${endCoords}`;
 
       const response = await axios.get(url);
       setRouteData(response.data);
@@ -47,9 +47,7 @@ function MapPage() {
   };
 
   return (
-    <div >
-    
-      <div>
+    <div>
       <MapContainer center={currentLocation || [48.8566, 2.3522]} zoom={13} style={{ height: "95vh", width: "100%" }}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {currentLocation && <Marker position={currentLocation} icon={customIcon} />}
@@ -60,11 +58,7 @@ function MapPage() {
           />
         )}
       </MapContainer>
-      </div>
-      <div>
-          <BackHome />
-      </div>
-
+      <BackHome />
     </div>
   );
 }
