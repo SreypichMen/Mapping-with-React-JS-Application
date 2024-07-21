@@ -3,8 +3,8 @@ import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Polyline } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import BackHome from '../../components/MapPage/useNavigate'
-import '../../assets/styles/navigation/back_to_home.css'
+import BackHome from '../../components/MapPage/BackHomeNavigationButton/BackHomeNavigationButton'
+import '../../components/MapPage/BackHomeNavigationButton/BackHomeNavigationButton'
 // Define the custom icon
 const customIcon = new L.Icon({
   iconUrl: '/marker-icon.png',

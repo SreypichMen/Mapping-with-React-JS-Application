@@ -1,0 +1,42 @@
+@import url("~leaflet/dist/leaflet.css");
+@import '../assets/styles/dark-theme.css';
+@import '../assets/styles/light-theme.css';
+
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --link-bg-color: #007bff;
+  --link-hover-bg-color: #0056b3;
+}
+
+body {
+  margin: 0;
+  background-color: var(--container-bg-color);
+  color: var(--text-color);
+}
+
+h1 {
+  color: var(--text-color);
+  margin-bottom: 1.25em; /* 20px equivalent */
+}
+
+p {
+  color: var(--text-color);
+  margin-bottom: 1.875em; /* 30px equivalent */
+  font-size: 1.125em; /* 18px equivalent */
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  background-color: var(--link-bg-color);
+  padding: 0.625em 1.25em; /* 10px 20px equivalent */
+  border-radius: 0.3125em; /* 5px equivalent */
+  transition: background-color 0.3s;
+}
+
+.link:hover {
+  background-color: var(--link-hover-bg-color);
+}

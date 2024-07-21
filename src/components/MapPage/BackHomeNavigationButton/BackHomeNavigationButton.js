@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import '../../assets/styles/navigation/back_to_home.css'
+import '../BackHomeNavigationButton/BackHomeNavigationButton.css'
 const MapPage = () => {
   const navigate = useNavigate();
 

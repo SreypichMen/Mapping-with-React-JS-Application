@@ -1,0 +1,7 @@
+.header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5625em; /* 25px equivalent */
+    padding-right: 1.25em; /* 20px equivalent */
+  }
+  
