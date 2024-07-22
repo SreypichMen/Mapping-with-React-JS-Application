@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { MapContainer, TileLayer, Marker, Polyline } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import BackHome from '../../components/MapPage/BackHomeNavigationButton/BackHomeNavigationButton'
+import BackHome from '../../components/MapPage/BackHomeNavigationButton/BackHomeNavigationButton';
 
 // Define the custom icon
 const customIcon = new L.Icon({
@@ -16,15 +16,15 @@ const customIcon = new L.Icon({
 });
 
 function MapPage() {
-  const [routeData, setRouteData] = useState(null);
   const [currentLocation, setCurrentLocation] = useState(null);
 
   useEffect(() => {
+    // Fetch user's current location
     navigator.geolocation.getCurrentPosition(
       position => {
         const { latitude, longitude } = position.coords;
         setCurrentLocation([latitude, longitude]);
-        fetchRouteData(latitude, longitude);
+        fetchElevationData(latitude, longitude); // Fetch elevation data
       },
       error => {
         console.error('Error fetching location:', error);
@@ -32,17 +32,14 @@ function MapPage() {
     );
   }, []);
 
-  const fetchRouteData = async (lat, lon) => {
+  const fetchElevationData = async (lat, lon) => {
     try {
-      const apiKey =process.env.REACT_APP_API_URL ; // Use environment variable
-      const startCoords = `${lon},${lat}`;
-      const endCoords = '2.3522,48.8566'; // Example endpoint in Paris
-      const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${process.env.REACT_APP_API_URL }&start=${startCoords}&end=${endCoords}`;
-
+      const apiKey = process.env.REACT_APP_API_URL ; // Use environment variable for API key
+      const url = `https://api.openrouteservice.org/elevation/point?api_key=${apiKey}&geometry=${lon},${lat}`;
       const response = await axios.get(url);
-      setRouteData(response.data);
+      console.log('Elevation data:', response.data); // Log the elevation data response
     } catch (error) {
-      console.error('Error fetching route data:', error);
+      console.error('Error fetching elevation data:', error);
     }
   };
 
@@ -51,12 +48,6 @@ function MapPage() {
       <MapContainer center={currentLocation || [48.8566, 2.3522]} zoom={13} style={{ height: "95vh", width: "100%" }}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {currentLocation && <Marker position={currentLocation} icon={customIcon} />}
-        {routeData && (
-          <Polyline
-            positions={routeData.features[0].geometry.coordinates.map(([lng, lat]) => [lat, lng])}
-            color="blue"
-          />
-        )}
       </MapContainer>
       <BackHome />
     </div>
