@@ -1,0 +1,76 @@
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .input-container {
+    position: absolute;
+    top: 1em;
+    left: 5em;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1em;
+    border-radius: 0.5em;
+    box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    flex-wrap: nowrap;
+  }
+  
+  .end-input {
+    padding: 0.5em;
+    width: 12.5em;
+    border: 0.0625em solid #ccc;
+    border-radius: 0.25em;
+    font-size: 1em;
+    height: 2em; /* Adjusted height */
+    box-sizing: border-box;
+  }
+  
+  .search-button {
+    padding: 0.5em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0.25em;
+    cursor: pointer;
+    height: 2em; /* Adjusted height */
+    width: 2em;
+    font-size: 1em;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .search-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .search-button i {
+    font-size: 1.25em; /* Adjust icon size */
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 768px) {
+    .input-container {
+      left: 1em;
+      right: 1em;
+      flex-direction: row; /* Row direction for smaller screens */
+      gap: 0.5em;
+    }
+    .end-input {
+      width: calc(100% - 2.5em); /* Adjust width to fit with the search button */
+      font-size: 0.875em; /* Slightly smaller font size for smaller screens */
+    }
+    .search-button {
+      width: 2.5em; /* Slightly larger width for better touch targets */
+      height: 2em; /* Ensure consistent height */
+    }
+    .search-button i {
+      font-size: 1em; /* Adjust icon size for smaller screens */
+    }
+  }
+  
