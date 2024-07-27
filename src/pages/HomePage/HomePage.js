@@ -26,7 +26,7 @@ function HomePage() {
               <ThemeToggle />
             </div>
             <div className="container">
-              <h1>{translations.welcome}</h1> {/* Use translations directly */}
+              <h1>{translations.welcome}</h1> 
               <p>{translations.description}</p>
               <Link to="/map" className="link">{translations.go_to_map}</Link>
             </div>
