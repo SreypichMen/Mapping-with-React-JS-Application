@@ -5,11 +5,19 @@ import 'leaflet/dist/leaflet.css';
 import BackHome from '../../components/MapPage/BackHomeNavigationButton/BackHomeNavigationButton';
 import useCurrentLocation from '../../hooks/useCurrentLocation';
 import { fetchElevationData } from '../../api/elevationService';
-import { fetchGeocode } from '../../api/geocodeService'; // Assuming you have a function that fetches geocodes
-import './MapPage.css'; // Import the CSS file
+import { fetchGeocode } from '../../api/geocodeService';
+import './MapPage.css'; 
+import Lottie from 'lottie-react';
+import animationData from '../../lottie/loading.json';
 
-// Define the custom icon
-const customIcon = new L.Icon({
+// Define the custom icons
+const startIcon = new L.Icon({
+    iconUrl: '/circle-blue.png',
+    iconSize: [25, 25],
+    iconAnchor: [12, 12],
+});
+
+const endIcon = new L.Icon({
     iconUrl: '/marker-icon.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
@@ -22,15 +30,25 @@ function MapPage() {
     const [endPoint, setEndPoint] = useState('');
     const [endPointCoords, setEndPointCoords] = useState(null);
     const currentLocation = useCurrentLocation();
-    const apiKey = process.env.REACT_APP_API_URL; 
+    const apiKey = process.env.REACT_APP_API_URL;
+
     useEffect(() => {
-        // Fetch elevation data for current location
         if (currentLocation?.latitude && currentLocation?.longitude) {
-            fetchElevationData(currentLocation.latitude, currentLocation.longitude, apiKey)
-                .then(data => console.log('Elevation data:', data))
-                .catch(error => console.error('Elevation fetch failed:', error));
+            // Ensure coordinates array has at least 2 points
+            if (endPointCoords) {
+                const coordinates = [
+                    [currentLocation.longitude, currentLocation.latitude],
+                    [endPointCoords.longitude, endPointCoords.latitude]
+                ];
+                fetchElevationData(coordinates, apiKey)
+                .then(data => {
+                    console.log('Elevation data received:', data);
+                })
+                .catch(error => {
+                    console.error('Failed to fetch elevation data:', error)})
+            }
         }
-    }, [currentLocation, apiKey]);
+    }, [currentLocation, endPointCoords, apiKey]);
 
     const handleSearch = () => {
         if (endPoint.trim() !== '') {
@@ -53,7 +71,18 @@ function MapPage() {
     };
 
     if (!currentLocation || currentLocation.latitude == null || currentLocation.longitude == null) {
-        return <div>Loading location data...</div>;
+        return (
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100vh',
+                fontSize: '20px',
+                color: 'blue',
+            }}>
+                <Lottie animationData={animationData} style={{ width: 300, height: 300 }} />
+            </div>
+        );
     }
 
     return (
@@ -72,8 +101,8 @@ function MapPage() {
             </div>
             <MapContainer center={[currentLocation.latitude, currentLocation.longitude]} zoom={13} style={{ height: "95vh", width: "100%" }}>
                 <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                <Marker position={[currentLocation.latitude, currentLocation.longitude]} icon={customIcon} />
-                {endPointCoords && <Marker position={[endPointCoords.latitude, endPointCoords.longitude]} icon={customIcon} />}
+                <Marker position={[currentLocation.latitude, currentLocation.longitude]} icon={startIcon} />
+                {endPointCoords && <Marker position={[endPointCoords.latitude, endPointCoords.longitude]} icon={endIcon} />}
                 {currentLocation && endPointCoords && (
                     <Polyline
                         positions={[
